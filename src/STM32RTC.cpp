@@ -1307,6 +1307,9 @@ void STM32RTC::configForLowPower(Source_Clock source)
 #ifdef __HAL_RCC_RTCAPB_CLKAM_ENABLE
   __HAL_RCC_RTCAPB_CLKAM_ENABLE();
 #endif
+#if defined(PWR_WAKEUP_RTC)
+  HAL_PWREx_EnableInternalWakeUpLine(PWR_WAKEUP_RTC, PWR_WUP_RISIEDG);
+#endif
 #if defined(PWR_WAKEUP_PIN_RTC)
   HAL_PWR_EnableWakeUpPin(PWR_WAKEUP_PIN_RTC, PWR_WUP_RISIEDG);
 #endif
